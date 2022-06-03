@@ -350,7 +350,7 @@ def get_emissions(f,i,j,k,l,p,n,m):
     if f >= 2:
         m3 = m3/0.9
         #加工：直接/FLW/disposal
-        result.append( m3 * 1.6 * energy[n])
+        result.append( m3 * 0.026 * energy[n])
         result.append( production_emission(f,m3*0.1,n))
         result.append( m3 * 0.1 * disposal[m])
     m4 = m3 / (1 - lr4)
@@ -422,7 +422,7 @@ def get_emissions_stage(f,i,j,k,l,p,n,m):
     if f >= 2:
         m3 = m3/0.9
         #加工：直接/FLW/disposal
-        stage_data[f][3] +=percent_line * (m3 * 1.6 * energy[n]+ production_emission(f,m3*0.1,n)+ m3 * 0.1 * disposal[m])
+        stage_data[f][3] +=percent_line * (m3 * 0.026 * energy[n]+ production_emission(f,m3*0.1,n)+ m3 * 0.1 * disposal[m])
     m4 = m3 / (1 - lr4)
     #省际：直接/FLW/disposal
     stage_data[f][4] += percent_line*(d[1] * d[2] * m4+production_emission(f,m4-m3,n)+disposal[m]*(m4-m3))
@@ -489,4 +489,4 @@ for i in range(0,6):
     for j in range(0,6):
         sheet1.write(i+1,j+1,stage_data[i][j])
 
-book.save("碳排放汇总.xls") 
+book.save("碳排放汇总ver3(修改屠宰碳排放).xls") 
